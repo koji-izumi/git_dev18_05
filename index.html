@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+</head>
+
+<body onload="init()">
+    <header>
+        <div class="header-top">
+            <h1>Search from</h1>
+            <img src="img/spotify.png" alt="spotify">
+        </div>
+        <div class="header-bottom">
+            <input type="text" class="input" placeholder="曲名（歌手名）を入力">
+            <button class="button">検索</button>
+        </div>
+    </header>
+    <div class="track-list"></div>
+    <div class="save">
+        <h1>My Favorites</h1>
+        <div class="save-list"></div>
+    </div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBOXnUAW8eP3pWsnu7xfp_yx2J3lqYt3fI",
+            authDomain: "spotify-playlist-16233.firebaseapp.com",
+            projectId: "spotify-playlist-16233",
+            storageBucket: "spotify-playlist-16233.appspot.com",
+            messagingSenderId: "68510965223",
+            appId: "1:68510965223:web:bdbcbd521ee29767d8f142"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="js/main.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+</body>
+
+</html>
