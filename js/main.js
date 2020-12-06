@@ -1,5 +1,5 @@
-// Spotify APIのトークンを設定（１時間で期限切れ）
-let token = 'BQAV8CoeOLQDYU6pl7_nRu2uvG6tZKlCfTWODpTqITVJ3_gX1oaC6Gt6Uo8z2D6pc2EmduZCi0om8S93cqUg3U4KOGjyxU3_54gXzTGjtu6zfVoosEjlVj_BPI0YM1z4JBVG3LMpobJV7LgidNg6hx9rblYWaNo';
+// Spotify APIのトークンを設定（１時間で期限切れるためここから再取得する必要あり→ https://developer.spotify.com/console/get-search-item/?q=&type=&market=&limit=&offset=&include_external=）
+let token = 'BQAgBazcLZQXV25upuu7AQl9jA4WsLdXOTSAC-5TePzv1_Ac6wmi81BPQzQ4gR3BsRmpKz0PMqu7GCsTKrOO6LAZHdlbYVbJSaPblElzPelR7oOgNTEwu--rrSwbZj1t9fmCSG91uk_lzvObp7kjAZn9zup_fGo';
 let newFavTrack = firebase.database().ref('favList');
 
 // 検索ボタン押下時の処理
