@@ -1,5 +1,6 @@
-// Spotify APIのトークンを設定（１時間で期限切れるためここから再取得する必要あり→ https://developer.spotify.com/console/get-search-item/?q=&type=&market=&limit=&offset=&include_external=）
-let token = 'APIトークンを入力';
+// Spotify APIのトークンを設定
+// １時間でトークンの期限が切れるためここから再取得する必要あり→ https://developer.spotify.com/console/get-search-item/?q=&type=&market=&limit=&offset=&include_external=
+let token = 'BQBpT1fFFg1Fz7nwLhPyMfIpOu_s2S_iVSf7ghg8-A_yDeu1lJNtsIppTg8D-OPcg97lM0D9Ci6mlcUZBlN62fCB5wDCyeKoQWlP8V4qbMRGju_EtU8KKV4syAUHBXjB-ZIQSW1kJYsic5spU2UNWakBTOrSp-Y';
 let newFavTrack = firebase.database().ref('favList');
 
 // 検索ボタン押下時の処理
@@ -10,7 +11,7 @@ $(".button").on("click", function () {
     // 入力ワードを変数に代入し、Spotifyで検索
     let searchWord = $(".input").val();
     $.ajax({
-        url: `https://api.spotify.com/v1/search?q=${searchWord}%20&type=track`,
+        url: `https://api.spotify.com/v1/search?q=${searchWord}%20&type=track&artist`,
         headers: {
             Authorization: 'Bearer ' + token
         }
@@ -42,7 +43,23 @@ $(".button").on("click", function () {
                 <video controls name="media" class="player">
                     <source src="${preview}" type="audio/mpeg">
                     </video>
-                </div>`)
+                </div>`);
+
+                // すでにFav登録されていればハートボタンを赤色にする
+                newFavTrack.once("value",function(snapshot){
+                    let favObj = snapshot.val();
+                    // Favが何もなければそのまま
+                    if(favObj==null){;}
+                    else{
+                    // オブジェクトのキーを配列化
+                    let favArray = Object.keys(favObj);
+                    if(favArray.indexOf(trackID) >=0){
+                        $(".track-list").find("#"+trackID).find(".LikesIcon").addClass("on");
+                        $(".track-list").find("#"+trackID).find(".LikesIcon").children("i").attr("class", "fas fa-heart LikesIcon-fa-heart heart");
+                    }
+                }
+                })
+
             }
             // Likeボタンクリック
             // 参考ページ: https://yuyauver98.me/twitter-like-animation/#_fontawesomecss
@@ -129,11 +146,11 @@ function init() {
         if(favObj==null){;}
         else{
             // オブジェクトを配列化
-        let favArray = Object.entries(favObj);
+        let favArray = Object.keys(favObj);
         for (let n = 0; n < favArray.length; n++) {
 
             // 配列に入っている楽曲のIDを取得しSpotifyで検索
-            const favTrackID = favArray[n][0];
+            const favTrackID = favArray[n];
             $.ajax({
                 url: `https://api.spotify.com/v1/tracks/${favTrackID}`,
                 headers: {
@@ -163,11 +180,11 @@ function init() {
             <source src="${preview}" type="audio/mpeg">
             </video>
         </div>`);
+        favRemove();
 
                 })
         }
-        favRemove();
-    }
 
+    }
     })
 }
