@@ -1,6 +1,6 @@
 // Spotify APIのトークンを設定
 // １時間でトークンの期限が切れるためここから再取得する必要あり→ https://developer.spotify.com/console/get-search-item/?q=&type=&market=&limit=&offset=&include_external=
-let token = 'BQBpT1fFFg1Fz7nwLhPyMfIpOu_s2S_iVSf7ghg8-A_yDeu1lJNtsIppTg8D-OPcg97lM0D9Ci6mlcUZBlN62fCB5wDCyeKoQWlP8V4qbMRGju_EtU8KKV4syAUHBXjB-ZIQSW1kJYsic5spU2UNWakBTOrSp-Y';
+let token = 'APIトークンを入力';
 let newFavTrack = firebase.database().ref('favList');
 
 // 検索ボタン押下時の処理
